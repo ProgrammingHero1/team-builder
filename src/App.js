@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { useEffect } from 'react';
 import User from './components/User/User';
@@ -12,12 +11,13 @@ function App() {
     fetch('https://randomuser.me/api/?results=15')
     .then(res =>  res.json())
     .then(data => setUsers(data.results))
-  }, [])
+  }, []);
+
   const addMember = (name) => {
     const exists = team.find(m => m === name);
-      if(!exists){
-        setTeam([...team, name])
-      }
+    if(!exists) {
+      setTeam([...team, name]);
+    }
   }
   
   return (
@@ -25,7 +25,7 @@ function App() {
         <h1>Team Builder</h1>
         <ul>
           {
-            team.map((m, idx) => <li key={idx}>{m}</li>)
+            team.map( (m, idx) => <li key={idx}>{m}</li>)
           }
         </ul>
         {

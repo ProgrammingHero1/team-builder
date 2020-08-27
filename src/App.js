@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import './App.css';
 import { useEffect } from 'react';
 import User from './components/User/User';
+import data from './data/data.json';
 
 function App() {
   const [users, setUsers] = useState([]);
   const [team, setTeam] = useState([]);
+  const [clubs, setClubs] = useState([]);
+ 
+  useEffect( () => {
+    setClubs(data);
+  } , [])
 
   useEffect( () =>{
     fetch('https://randomuser.me/api/?results=15')
@@ -23,6 +29,11 @@ function App() {
   return (
     <div>
         <h1>Team Builder</h1>
+        <ul>
+          {
+            clubs.map(club => <li>{club.name}</li>)
+          }
+        </ul>
         <ul>
           {
             team.map( (m, idx) => <li key={idx}>{m}</li>)
